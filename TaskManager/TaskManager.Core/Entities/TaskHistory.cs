@@ -15,7 +15,9 @@ namespace TaskManager.Core.Entities
         public string Title { get; set; }
         [MaxLength(500)]
         public string Description { get; set; }
+        [Column(TypeName="datetime")]
         public DateTime? DueDate { get; set; }
+        [Column(TypeName="datetime")]
         public DateTime? Completed { get; set; }
         [MaxLength(500)]
         public string Remarks { get; set; }

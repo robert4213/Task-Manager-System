@@ -10,7 +10,7 @@ namespace TaskManager.Core.MapperProfile
         public TaskMappingProfile()
         {
             // User
-            CreateMap<User, UserDetailResponse>();
+            CreateMap<User, UserResponse>();
             CreateMap<UserRegisterRequest, User>();
             CreateMap<UserUpdateRequest, User>();
             

@@ -11,7 +11,11 @@ namespace TaskManager.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TaskHistory>().HasOne(th => th.User)
+                .WithMany(u => u.TaskHistories).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<TaskHistory>().Property(history => history.Completed).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Tasks>().HasOne(th => th.User)
+                .WithMany(u => u.Tasks).OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<User> Users { get; set; }

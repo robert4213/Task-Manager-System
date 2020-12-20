@@ -26,6 +26,14 @@ namespace TaskManager.API.Controllers
         }
         
         [HttpGet]
+        [Route("id/{id}")]
+        public async Task<IActionResult> GetTaskById(int id)
+        {
+            var task = await _taskService.GetTaskById(id);
+            return task is null? NotFound():Ok(task);
+        }
+        
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetTasksByUserId(int id)
         {
@@ -53,7 +61,7 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpDelete]
-        [Route("Delete/{id}")]
+        [Route("delete/{id}")]
         public async Task<IActionResult> DeleteTask(int id)
         {
             await _taskService.DeleteTask(id);

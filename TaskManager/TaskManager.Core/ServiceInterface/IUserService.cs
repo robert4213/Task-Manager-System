@@ -8,10 +8,10 @@ namespace TaskManager.Core.ServiceInterface
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserDetailResponse>> GatAllUser();
-        
-        Task<UserDetailResponse> Register(UserRegisterRequest userRegisterRequest);
-        Task<UserDetailResponse> UpdateUser(UserUpdateRequest userRegisterRequest);
+        Task<IEnumerable<UserResponse>> GetAllUser();
+        Task<UserResponse> GetUserById(int id);
+        Task<UserResponse> Register(UserRegisterRequest userRegisterRequest);
+        Task<UserResponse> UpdateUser(UserUpdateRequest userRegisterRequest);
         Task DeleteUser(int id);
     }
 }

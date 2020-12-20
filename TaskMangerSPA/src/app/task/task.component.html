@@ -1,1 +1,77 @@
-<p>task works!</p>
+<div class="container">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="deleteFailed">
+    Delete Operation Failed!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="failedDismiss()">
+      <span >&times;</span>
+    </button>
+  </div>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="completeFailed">
+    Finish Operation Failed!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="failedDismiss()">
+      <span >&times;</span>
+    </button>
+  </div>
+
+  <h2 *ngIf="!(tasks && tasks.length) && !(taskHistories && taskHistories.length)"> No records found</h2>
+  <div *ngIf="tasks && tasks.length">
+    <h2>Current Task For {{userName}}</h2>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Remarks</th>
+        <th scope="col">Operation</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let task of tasks">
+      <tr class="table">
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.title}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.dueDate |  date:'MM/dd/yyyy'}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.remarks}}</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm mx-2" (click)="taskComplete(task.id)">Finish</button>
+          <button type="button" class="btn btn-primary btn-sm mr-2" [routerLink]="['/task/update',task.id]">Update</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="taskHistories && taskHistories.length">
+    <h2>Task History For {{userName}}</h2>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Completed Date</th>
+        <th scope="col">Remarks</th>
+        <th scope="col">Operation</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let taskHistory of taskHistories">
+      <tr class="table">
+        <th scope="row">{{taskHistory.taskId}}</th>
+        <td>{{taskHistory.title}}</td>
+        <td>{{taskHistory.description}}</td>
+        <td>{{taskHistory.dueDate |  date:'MM/dd/yyyy'}}</td>
+        <td>{{taskHistory.completed |  date:'MM/dd/yyyy'}}</td>
+        <td>{{taskHistory.remarks}}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm mx-2" [routerLink]="['/taskHistory/update',taskHistory.taskId]">Update</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteTaskHistory(taskHistory.taskId)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

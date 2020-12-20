@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()" #taskHistoryForm="ngForm">
+  <div class="form-group">
+    <div class="form-group">
+      <label for="inputTitle">Title</label>
+      <input type="text" class="form-control" id="inputTitle" placeholder="Title" [(ngModel)]="taskHistory.title" name="title" maxlength="50">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-group">
+      <label for="inputRemark">Remark</label>
+      <input type="text" class="form-control" id="inputRemark" placeholder="Remark" [(ngModel)]="taskHistory.remarks" name="remarks" maxlength="50">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-group">
+      <label for="inputDueDate">Due Date</label>
+      <input type="datetime-local" class="form-control" id="inputDueDate" [(ngModel)]="taskHistory.dueDate" name="dueDate">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-group">
+      <label for="inputCompletedDate">Completed Date</label>
+      <input type="datetime-local" class="form-control" id="inputCompletedDate" [(ngModel)]="taskHistory.completed" name="completedDate">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputState">User</label>
+    <select id="inputState" class="form-control" [(ngModel)]="taskHistory.userId" name="userId" #userId="ngModel" required>
+      <option value="{{user.id}}" *ngFor="let user of users">{{user.id}}: {{user.fullname}}</option>
+    </select>
+    <div [hidden]="userId.valid || userId.pristine"
+         class="alert alert-danger">
+      User is required
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription">Description</label>
+    <textarea class="form-control" id="inputDescription" placeholder="Description" [(ngModel)]="taskHistory.description" name="description" maxlength="500"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!taskHistoryForm.form.valid">Submit</button>
+</form>
+

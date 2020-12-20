@@ -27,6 +27,12 @@ namespace TaskManager.Infrastructure.Service
             var tasks = await _taskRepository.ListAllAsync();
             return _mapper.Map<IEnumerable<TaskResponse>>(tasks);
         }
+        
+        public async Task<TaskResponse> GetTaskById(int id)
+        {
+            var task = await _taskRepository.GetByIdAsync(id);
+            return _mapper.Map<TaskResponse>(task);
+        }
 
         public async Task<IEnumerable<Tasks>> GetTasksByUserId(int id)
         {

@@ -19,7 +19,7 @@
   <tbody *ngFor="let user of users">
     <tr class="table">
       <th scope="row">{{user.id}}</th>
-      <td><a routerLink="">{{user.fullname}}</a></td>
+      <td><a [routerLink]="['/task',user.id]">{{user.fullname}}</a></td>
       <td>{{user.email}}</td>
       <td>{{user.mobileNo}}</td>
       <td>

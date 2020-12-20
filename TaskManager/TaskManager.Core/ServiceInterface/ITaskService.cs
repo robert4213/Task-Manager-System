@@ -9,6 +9,7 @@ namespace TaskManager.Core.ServiceInterface
     public interface ITaskService
     {
         Task<IEnumerable<TaskResponse>> GetAllTasks();
+        Task<TaskResponse> GetTaskById(int id);
         Task<IEnumerable<Tasks>> GetTasksByUserId(int id);
         Task<TaskResponse> CreateTask(TaskCreateRequest taskCreateRequest);
         Task<TaskResponse> UpdateTask(TaskCreateRequest taskCreateRequest);

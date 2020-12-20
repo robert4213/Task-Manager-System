@@ -25,6 +25,14 @@ namespace TaskManager.API.Controllers
         }
         
         [HttpGet]
+        [Route("id/{id}")]
+        public async Task<IActionResult> GetTaskHistoryById(int id)
+        {
+            var taskHistory = await _taskHistoryService.GetTaskHistoryById(id);
+            return taskHistory is null? NotFound():Ok(taskHistory);
+        }
+        
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetTaskHistoryByUserId(int id)
         {

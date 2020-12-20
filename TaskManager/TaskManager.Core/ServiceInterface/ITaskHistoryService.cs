@@ -9,6 +9,7 @@ namespace TaskManager.Core.ServiceInterface
     public interface ITaskHistoryService
     {
         Task<IEnumerable<TaskHistoryResponse>> ListAllTaskHistory();
+        Task<TaskHistoryResponse> GetTaskHistoryById(int id);
         Task<IEnumerable<TaskHistory>> ListTaskHistoryByUserId(int id);
         // Complete task. Move task from task table to task history table.
         // id: Task id

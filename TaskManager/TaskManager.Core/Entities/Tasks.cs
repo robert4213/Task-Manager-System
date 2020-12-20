@@ -13,6 +13,7 @@ namespace TaskManager.Core.Entities
         public string Title { get; set; }
         [MaxLength(500)]
         public string Description { get; set; }
+        [Column(TypeName="datetime")]
         public DateTime? DueDate { get; set; }
         [Column(TypeName="char(1)")]
         public char? Priority { get; set; }

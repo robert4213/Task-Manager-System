@@ -11,8 +11,9 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAll(path: string): Observable<any[]> {
-    return this.httpClient.get(`${environment.apiUrl}${path}`).pipe(map(res => res as any[]));
+  public getAll(path: string, id?: number): Observable<any[]> {
+    return typeof(id) !== 'undefined' ? this.httpClient.get(`${environment.apiUrl}${path}/${id}`).pipe(map(res => res as any[]))
+      : this.httpClient.get(`${environment.apiUrl}${path}`).pipe(map(res => res as any[]));
   }
 
   public getOne(path: string, id?: number): Observable<any> {

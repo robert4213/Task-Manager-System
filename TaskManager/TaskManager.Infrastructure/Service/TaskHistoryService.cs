@@ -29,6 +29,12 @@ namespace TaskManager.Infrastructure.Service
             return _mapper.Map<IEnumerable<TaskHistoryResponse>>(histories);
         }
 
+        public async Task<TaskHistoryResponse> GetTaskHistoryById(int id)
+        {
+            var history = await _taskHistoryRepository.GetByIdAsync(id);
+            return _mapper.Map<TaskHistoryResponse>(history);
+        }
+
         public async Task<IEnumerable<TaskHistory>> ListTaskHistoryByUserId(int id)
         {
             var histories = await _taskHistoryRepository.ListAsync(th=>th.UserId==id);

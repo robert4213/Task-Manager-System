@@ -20,8 +20,16 @@ namespace TaskManager.API.Controllers
         [Route("")]
         public async Task<IActionResult> ListAllUser()
         {
-            var users = await _userService.GatAllUser();
+            var users = await _userService.GetAllUser();
             return Ok(users);
+        }
+        
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            var user = await _userService.GetUserById(id);
+            return user is null? NotFound():Ok(user);
         }
 
         [HttpPost]

@@ -21,26 +21,33 @@ namespace TaskManager.Infrastructure.Service
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<UserDetailResponse>> GatAllUser()
+        public async Task<IEnumerable<UserResponse>> GetAllUser()
         {
             var users = await _userRepository.ListAllAsync();
-            var res = _mapper.Map<IEnumerable<UserDetailResponse>>(users);
+            var res = _mapper.Map<IEnumerable<UserResponse>>(users);
             return res;
         }
 
-        public async Task<UserDetailResponse> Register(UserRegisterRequest userRegisterRequest)
+        public async Task<UserResponse> GetUserById(int id)
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+            var res = _mapper.Map<UserResponse>(user);
+            return res;
+        }
+
+        public async Task<UserResponse> Register(UserRegisterRequest userRegisterRequest)
         {
             var user = _mapper.Map<User>(userRegisterRequest);
             var resUser = await _userRepository.AddAsync(user);
-            var res = _mapper.Map<UserDetailResponse>(resUser);
+            var res = _mapper.Map<UserResponse>(resUser);
             return res;
         }
 
-        public async Task<UserDetailResponse> UpdateUser(UserUpdateRequest userUpdateRequest)
+        public async Task<UserResponse> UpdateUser(UserUpdateRequest userUpdateRequest)
         {
             var user = _mapper.Map<User>(userUpdateRequest);
             var resUser = await _userRepository.UpdateAsync(user);
-            var res = _mapper.Map<UserDetailResponse>(resUser);
+            var res = _mapper.Map<UserResponse>(resUser);
             return res;
         }
 

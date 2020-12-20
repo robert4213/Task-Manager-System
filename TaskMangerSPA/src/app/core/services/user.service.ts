@@ -15,7 +15,19 @@ export class UserService {
     return this.apiService.getAll(`user`).pipe(map(res => res as User[]));
   }
 
+  public getUserById(id: number): Observable<User>{
+    return this.apiService.getOne('user', id).pipe(map(res => res as User));
+  }
+
   public deleteUser(id: number): Observable<any> {
     return this.apiService.delete(`user/delete`, id).pipe(map(res => res as any));
+  }
+
+  public createUser(user: User): Observable<any>{
+    return this.apiService.create('user/register', user);
+  }
+
+  public updateUser(user: User): Observable<any>{
+    return this.apiService.update('user/update', user);
   }
 }

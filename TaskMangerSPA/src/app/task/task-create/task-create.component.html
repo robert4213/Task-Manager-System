@@ -1,0 +1,10 @@
+<div class="container my-2">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="createFailed">
+    Create Operation Failed!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="failedDismiss()">
+      <span >&times;</span>
+    </button>
+  </div>
+  <h2 class="my-2">Create New Task</h2>
+  <app-task-form (res)="onSubmit($event)" [task]="task"></app-task-form>
+</div>
