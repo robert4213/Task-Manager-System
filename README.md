@@ -4,7 +4,7 @@
 Backend, .net core, entity framework
 
 ## TaskManagerSPA
-Angular cli
+Frontend, Angular cli
 
 ## SQL
 Initial data for TaskManagerDB
